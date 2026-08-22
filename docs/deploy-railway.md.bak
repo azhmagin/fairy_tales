@@ -14,9 +14,9 @@ Railway размещает сервисы в US / EU / Asia — региона �
 cd ~/Documents/Telegram_stories/storybook
 git status                      # репозиторий уже инициализирован и закоммичен
 gh auth login                   # если gh не установлен: brew install gh
-git push -u origin main   # remote origin = github.com/azhmagin/fairy_tales
+gh repo create storybook --private --source=. --remote=origin --push
 # без gh: создать пустой приватный репо на github.com, затем
-# git remote add origin https://github.com/azhmagin/fairy_tales.git
+# git remote add origin git@github.com:<you>/storybook.git && git push -u origin main
 ```
 
 ## 2. Railway — инфраструктура
@@ -27,7 +27,7 @@ git push -u origin main   # remote origin = github.com/azhmagin/fairy_tales
 
 ## 3. Railway — сервисы из репозитория
 
-Три раза **+ New → GitHub Repo → fairy_tales** (один репозиторий, три сервиса):
+Три раза **+ New → GitHub Repo → storybook** (один репозиторий, три сервиса):
 
 | Сервис | Settings → Deploy → Start Command | Нужен ли публичный домен |
 |---|---|---|
