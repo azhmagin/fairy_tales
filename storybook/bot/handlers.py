@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import io
 import uuid
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 
 import structlog
 from aiogram import F, Router
@@ -25,10 +25,10 @@ from sqlalchemy import func, select
 from storybook.analytics import track
 from storybook.bot import texts
 from storybook.config import get_settings
-from storybook.content import STYLES, get_plot, load_plots
+from storybook.content import get_plot, load_plots
 from storybook.db import session
-from storybook.db.models import CharacterSheetRow, Child, Event, Order, Payment, User
-from storybook.domain import ChildProfile, Gender, OrderStatus, PaymentStatus
+from storybook.db.models import CharacterSheetRow, Child, Event, Job, Order, Payment, User
+from storybook.domain import ChildProfile, Gender, OrderStatus
 from storybook.generation import illustration_generator
 from storybook.orders import create_order, get_or_create_user, mark_paid, transition
 from storybook.payments import get_provider, short_code
@@ -148,10 +148,8 @@ async def name(m: Message, state: FSMContext) -> None:
 
 @router.message(Flow.age, F.text)
 async def age(m: Message, state: FSMContext) -> None:
-    try:
-        a = int(m.text.strip())
-        assert 1 <= a <= 14
-    except Exception:
+    a = int(m.text.strip()) if m.text.strip().isdigit() else 0
+    if not (1 <= a <= 14):
         await m.answer(texts.BAD_AGE)
         return
     await state.update_data(age=a)
@@ -215,7 +213,7 @@ async def _make_preview(m: Message, state: FSMContext, user_id: int) -> None:
     deps = _preview_deps()
     try:
         sheet, cost = await make_sheet(deps, order_id, child, plot, "soft3d")
-    except Exception as e:
+    except Exception:
         log.exception("preview_failed")
         await wait.edit_text("Не получилось нарисовать с этими фото 😔 Попробуйте прислать другое фото: /start")
         return
@@ -228,7 +226,6 @@ async def _make_preview(m: Message, state: FSMContext, user_id: int) -> None:
         order.preview_key = sheet.image_key
         if order.status == OrderStatus.DRAFT.value:
             await transition(s, order, OrderStatus.PREVIEW_READY)
-        from storybook.db.models import Job
         s.add(Job(order_id=order_id, stage="preview", status="OK", cost_usd=cost, provider=st.image_provider, finished_at=datetime.now(UTC)))
     await track("preview_generated", user_id=user_id, order_id=order_id, cost_usd=cost)
     img = await get_storage().get(sheet.image_key)

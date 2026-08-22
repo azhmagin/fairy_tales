@@ -20,13 +20,13 @@ class S3Storage:
 
         s = get_settings()
         self._session = aioboto3.Session()
-        self._kw = dict(
-            service_name="s3",
-            endpoint_url=s.s3_endpoint,
-            aws_access_key_id=s.s3_access_key,
-            aws_secret_access_key=s.s3_secret_key,
-            region_name=s.s3_region,
-        )
+        self._kw = {
+            "service_name": "s3",
+            "endpoint_url": s.s3_endpoint,
+            "aws_access_key_id": s.s3_access_key,
+            "aws_secret_access_key": s.s3_secret_key,
+            "region_name": s.s3_region,
+        }
         self._bucket = s.s3_bucket
 
     async def put(self, key: str, data: bytes, content_type: str) -> str:

@@ -1,3 +1,5 @@
+from itertools import pairwise
+
 import pytest
 
 from storybook.domain import InvalidTransition, OrderStatus, check_transition
@@ -6,7 +8,7 @@ from storybook.domain import InvalidTransition, OrderStatus, check_transition
 def test_happy_path_transitions():
     path = [OrderStatus.DRAFT, OrderStatus.PREVIEW_READY, OrderStatus.AWAITING_PAYMENT, OrderStatus.PAID,
             OrderStatus.GENERATING, OrderStatus.QA, OrderStatus.REVIEW, OrderStatus.DELIVERED]
-    for a, b in zip(path, path[1:]):
+    for a, b in pairwise(path):
         check_transition(a, b)
 
 

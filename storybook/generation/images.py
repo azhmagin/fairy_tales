@@ -6,7 +6,7 @@ import io
 import structlog
 
 from storybook.config import get_settings
-from storybook.domain import CharacterSheet, ChildProfile, Gender, ScenePrompt
+from storybook.domain import Gender
 from storybook.generation import GenResult
 
 log = structlog.get_logger()

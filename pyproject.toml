@@ -30,8 +30,12 @@ faceqa = ["insightface>=0.7", "onnxruntime>=1.18", "numpy>=1.26", "opencv-python
 dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5", "mypy>=1.10", "aiosqlite>=0.20"]
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "RUF"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003", "RUF012", "RUF023", "B008", "B904"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

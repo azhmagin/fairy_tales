@@ -39,7 +39,7 @@ async def _job(order_id: uuid.UUID, stage: str, status: str, cost: float = 0.0, 
 
 async def generate_book(ctx, order_id_str: str) -> str:
     """Main task. Safe to re-run: skips if the order is not in a generatable state."""
-    from storybook.bot.notify import progress_editor, notify_admin, deliver_book
+    from storybook.bot.notify import deliver_book, notify_admin, progress_editor
 
     order_id = uuid.UUID(order_id_str)
     async with session() as s:

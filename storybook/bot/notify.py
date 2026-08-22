@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 
 import structlog
 from aiogram import Bot
@@ -71,7 +71,7 @@ async def deliver_book(order_id: uuid.UUID) -> None:
             await transition(s, order, OrderStatus.DELIVERED)
             order.delivered_at = datetime.now(UTC)
         pdf_key, title, name, chat_id, ref = book.pdf_key, book.title, child.name, order.user_id, user.ref_code
-        child.photos_delete_at = datetime.now(UTC).replace(microsecond=0) + __import__("datetime").timedelta(days=get_settings().photo_retention_days)
+        child.photos_delete_at = datetime.now(UTC).replace(microsecond=0) + timedelta(days=get_settings().photo_retention_days)
     pdf = await get_storage().get(pdf_key)
     me = await bot().get_me()
     ref_link = f"https://t.me/{me.username}?start=ref_{ref}"

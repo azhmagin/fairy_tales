@@ -11,7 +11,7 @@ from storybook.domain import CharacterSheet, ChildProfile, ScenePrompt, Story
 class GenResult:
     """Bytes + cost, returned by image generators."""
 
-    __slots__ = ("data", "cost_usd", "model")
+    __slots__ = ("cost_usd", "data", "model")
 
     def __init__(self, data: bytes, cost_usd: float, model: str):
         self.data, self.cost_usd, self.model = data, cost_usd, model

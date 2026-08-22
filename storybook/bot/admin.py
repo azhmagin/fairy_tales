@@ -2,10 +2,18 @@
 from __future__ import annotations
 
 import uuid
+from datetime import timedelta
 
 from aiogram import F, Router
 from aiogram.filters import Command, CommandObject
-from aiogram.types import BufferedInputFile, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, Message
+from aiogram.types import (
+    BufferedInputFile,
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InputMediaPhoto,
+    Message,
+)
 from sqlalchemy import func, select
 
 from storybook.analytics import track
@@ -30,8 +38,8 @@ router.callback_query.filter(lambda c: _is_admin(c.from_user.id))
 @router.message(Command("confirm"))
 async def confirm(m: Message, command: CommandObject) -> None:
     """/confirm <order_id> — manual Kaspi confirmation (temporary, see tech-debt register)."""
-    from storybook.bot.notify import send_text
     from storybook.bot import texts
+    from storybook.bot.notify import send_text
 
     try:
         oid = uuid.UUID((command.args or "").strip())
@@ -116,7 +124,7 @@ async def stats(m: Message) -> None:
     async with session() as s:
         rows = (await s.execute(
             select(Event.name, func.count(func.distinct(Event.user_id)))
-            .where(Event.ts >= func.now() - __import__("datetime").timedelta(days=7))
+            .where(Event.ts >= func.now() - timedelta(days=7))
             .group_by(Event.name)
         )).all()
     counts = dict(rows)

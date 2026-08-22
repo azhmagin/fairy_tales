@@ -22,7 +22,7 @@ def build_bot() -> Bot:
 
 
 async def run_polling() -> None:
-    import storybook.bot.notify as notify
+    from storybook.bot import notify
 
     bot = build_bot()
     notify._bot = bot

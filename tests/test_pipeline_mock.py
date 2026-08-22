@@ -7,7 +7,6 @@ import pytest
 
 from storybook.content import get_plot
 from storybook.domain import ChildProfile, Gender
-from storybook.generation.faceqa import NoopFaceQA
 from storybook.generation.images import MockIllustrationGenerator
 from storybook.generation.story import MockStoryGenerator
 from storybook.storage import MemoryStorage, strip_exif_and_resize
@@ -47,7 +46,7 @@ async def test_full_pipeline_produces_pdf(tmp_path: Path):
     deps = PipelineDeps(storage=storage, story_gen=MockStoryGenerator(), image_gen=MockIllustrationGenerator(),
                         face_qa=FlakyFaceQA(), face_threshold=0.4, page_max_attempts=2, concurrency=4, chromium_path=chromium)
     order_id = uuid.uuid4()
-    sheet, cost = await make_sheet(deps, order_id, child, plot, "soft3d")
+    sheet, _cost = await make_sheet(deps, order_id, child, plot, "soft3d")
     assert sheet.image_key in storage.data
 
     progress = []

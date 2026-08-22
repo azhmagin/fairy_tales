@@ -18,7 +18,7 @@ from storybook.domain import PaymentEvent, PaymentIntent, PaymentStatus
 class PaymentProvider(Protocol):
     name: str
 
-    async def create_payment(self, order: 'Order') -> PaymentIntent: ...
+    async def create_payment(self, order: Order) -> PaymentIntent: ...
     def parse_callback(self, raw: dict) -> PaymentEvent: ...
 
 
@@ -28,7 +28,7 @@ class KaspiLinkProvider:
 
     name = "kaspi_link"
 
-    async def create_payment(self, order: 'Order') -> PaymentIntent:
+    async def create_payment(self, order: Order) -> PaymentIntent:
         st = get_settings()
         code = short_code(order.id)
         return PaymentIntent(provider=self.name, provider_ref=f"kaspi:{code}", url=st.kaspi_payment_link, amount=order.price_kzt)
@@ -50,7 +50,7 @@ class StarsProvider:
 
     name = "stars"
 
-    async def create_payment(self, order: 'Order') -> PaymentIntent:
+    async def create_payment(self, order: Order) -> PaymentIntent:
         st = get_settings()
         return PaymentIntent(
             provider=self.name, provider_ref=f"stars:{order.id}", invoice_payload=str(order.id), amount=st.stars_price, currency="XTR"
@@ -71,7 +71,7 @@ class StarsProvider:
 class MockProvider:
     name = "mock"
 
-    async def create_payment(self, order: 'Order') -> PaymentIntent:
+    async def create_payment(self, order: Order) -> PaymentIntent:
         return PaymentIntent(provider=self.name, provider_ref=f"mock:{order.id}", url=None, amount=order.price_kzt)
 
     def parse_callback(self, raw: dict) -> PaymentEvent:

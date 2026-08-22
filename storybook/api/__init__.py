@@ -20,7 +20,7 @@ _dp = None
 @app.on_event("startup")
 async def _startup() -> None:
     global _bot, _dp
-    import storybook.bot.notify as notify
+    from storybook.bot import notify
 
     st = get_settings()
     _bot = build_bot()

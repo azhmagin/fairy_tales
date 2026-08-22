@@ -88,8 +88,8 @@ class Order(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
-    book: Mapped["Book | None"] = relationship(back_populates="order", uselist=False)
-    payment: Mapped["Payment | None"] = relationship(back_populates="order", uselist=False)
+    book: Mapped[Book | None] = relationship(back_populates="order", uselist=False)
+    payment: Mapped[Payment | None] = relationship(back_populates="order", uselist=False)
 
 
 Index("ix_orders_outbox", Order.status, Order.enqueued_at)
@@ -125,7 +125,7 @@ class Book(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     order: Mapped[Order] = relationship(back_populates="book")
-    pages: Mapped[list["Page"]] = relationship(back_populates="book", order_by="Page.n")
+    pages: Mapped[list[Page]] = relationship(back_populates="book", order_by="Page.n")
 
 
 class Page(Base):
