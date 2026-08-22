@@ -1,0 +1,14 @@
+# Railway: one repo, three services (bot, worker, api) created from the same Dockerfile.
+# Set per-service "Start Command" in the dashboard (or via `railway` CLI):
+#   bot    -> python -m storybook bot
+#   worker -> python -m storybook worker
+#   api    -> python -m storybook api      (only if SB_BOT_MODE=webhook or a payment aggregator callback is used)
+# Migrations run automatically before each deploy via the pre-deploy command below.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "infra/Dockerfile"
+
+[deploy]
+preDeployCommand = "alembic upgrade head"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

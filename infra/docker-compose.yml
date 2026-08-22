@@ -1,0 +1,69 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: storybook
+      POSTGRES_PASSWORD: storybook
+      POSTGRES_DB: storybook
+    ports: ["5432:5432"]
+    volumes: ["pg:/var/lib/postgresql/data"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U storybook"], interval: 5s, retries: 10}
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redis:/data"]
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio12345
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["minio:/data"]
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on: [minio]
+    entrypoint: >
+      /bin/sh -c "
+      until mc alias set local http://minio:9000 minio minio12345; do sleep 1; done;
+      mc mb -p local/storybook || true;
+      mc ilm rule add --expire-days 30 --prefix photos/ local/storybook || true;
+      exit 0"
+
+  migrate:
+    build: {context: .., dockerfile: infra/Dockerfile}
+    env_file: ../.env
+    depends_on: {postgres: {condition: service_healthy}}
+    command: ["alembic", "upgrade", "head"]
+
+  bot:
+    build: {context: .., dockerfile: infra/Dockerfile}
+    env_file: ../.env
+    depends_on: [migrate, redis, minio-init]
+    command: ["python", "-m", "storybook", "bot"]
+    restart: unless-stopped
+
+  worker:
+    build: {context: .., dockerfile: infra/Dockerfile}
+    env_file: ../.env
+    depends_on: [migrate, redis, minio-init]
+    command: ["python", "-m", "storybook", "worker"]
+    restart: unless-stopped
+
+  # api is only needed in webhook mode / for payment callbacks
+  api:
+    build: {context: .., dockerfile: infra/Dockerfile}
+    env_file: ../.env
+    depends_on: [migrate, redis]
+    command: ["python", "-m", "storybook", "api"]
+    ports: ["8000:8000"]
+    profiles: ["webhook"]
+
+volumes:
+  pg: {}
+  redis: {}
+  minio: {}

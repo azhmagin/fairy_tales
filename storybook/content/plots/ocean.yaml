@@ -1,0 +1,20 @@
+code: ocean
+title: "{name} и тайна океана"
+emoji: "🐠"
+teaser: "Морская черепаха просит {name} помочь найти пропавший жемчуг, который освещает подводный город."
+age_range: [3, 9]
+hero_outfit: "turquoise diving suit with yellow stripes, small round goggles on forehead, flippers"
+version: 1
+scenes:
+  - {n: 1,  beat: "пляж",             setting: "sunny beach with shells",                     action: "hero builds a sandcastle, a sea turtle waves from the water"}
+  - {n: 2,  beat: "просьба",          setting: "shallow water, turtle close",                 action: "turtle asks hero for help, hero puts on goggles"}
+  - {n: 3,  beat: "погружение",       setting: "underwater with sunbeams",                    action: "hero swims down holding the turtle's shell"}
+  - {n: 4,  beat: "подводный город",  setting: "coral city with glowing windows, dim",        action: "hero sees the city where lights have gone out, fish look sad"}
+  - {n: 5,  beat: "подсказка",        setting: "coral city square",                           action: "an old octopus points toward a dark trench"}
+  - {n: 6,  beat: "впадина",          setting: "deep blue trench with glowing jellyfish",     action: "hero swims bravely with a lantern fish friend"}
+  - {n: 7,  beat: "краб",             setting: "rocky cave under the sea",                    action: "hero meets a grumpy giant crab guarding a chest"}
+  - {n: 8,  beat: "доброта",          setting: "rocky cave",                                  action: "hero helps the crab remove a net from its claw, crab smiles"}
+  - {n: 9,  beat: "жемчуг",           setting: "cave, open chest glowing",                    action: "crab gives the glowing pearl to hero"}
+  - {n: 10, beat: "свет",             setting: "coral city bright again",                     action: "hero places the pearl, city lights up, fish dance"}
+  - {n: 11, beat: "праздник",         setting: "coral city festival with bubbles",            action: "hero celebrates with sea creatures, dolphins jump"}
+  - {n: 12, beat: "домой",            setting: "beach at sunset",                             action: "hero sits on sand, turtle waves goodbye, a small pearl in hero's hand"}

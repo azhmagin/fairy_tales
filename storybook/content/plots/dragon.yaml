@@ -1,0 +1,20 @@
+code: dragon
+title: "{name} и дракон"
+emoji: "🐉"
+teaser: "В горах живёт маленький дракон, который боится огня. Только {name} сможет ему помочь."
+age_range: [3, 9]
+hero_outfit: "red hooded cloak, blue tunic, brown boots, small leather backpack"
+version: 1
+scenes:
+  - {n: 1,  beat: "утро дома",        setting: "cozy bedroom at sunrise, window with mountains", action: "hero wakes up and sees a tiny glowing letter on the windowsill"}
+  - {n: 2,  beat: "зов",              setting: "village square with stone well",                action: "hero reads the letter asking for help, villagers look worried at smoke over the mountains"}
+  - {n: 3,  beat: "дорога",           setting: "forest path with giant mushrooms",              action: "hero walks bravely with backpack, a squirrel shows the way"}
+  - {n: 4,  beat: "мост",             setting: "old rope bridge over a sparkling river",        action: "hero crosses the bridge carefully, holding the ropes"}
+  - {n: 5,  beat: "пещера",           setting: "entrance of a mountain cave with crystals",     action: "hero peeks inside, sees two big shy eyes in the dark"}
+  - {n: 6,  beat: "встреча",          setting: "inside the crystal cave",                      action: "hero meets a small green dragon who is hiding under its wings"}
+  - {n: 7,  beat: "секрет дракона",   setting: "crystal cave, soft glow",                      action: "dragon sneezes tiny sparks, looks embarrassed, hero laughs kindly"}
+  - {n: 8,  beat: "тренировка",       setting: "mountain meadow with flowers",                 action: "hero teaches the dragon to blow tiny flames onto a campfire, both focused"}
+  - {n: 9,  beat: "буря",             setting: "mountain meadow, dark clouds and rain",        action: "cold rain starts, the village below is freezing, dragon looks scared"}
+  - {n: 10, beat: "смелость",         setting: "village square under rain",                    action: "dragon breathes warm gentle fire to light lanterns, villagers cheer, hero proud"}
+  - {n: 11, beat: "праздник",         setting: "village at night with lanterns and stars",     action: "hero and dragon celebrate with villagers, hot tea and pastries"}
+  - {n: 12, beat: "домой",            setting: "hero's bedroom at night, dragon's silhouette outside the window", action: "hero falls asleep smiling, a tiny flame-shaped nightlight glows"}

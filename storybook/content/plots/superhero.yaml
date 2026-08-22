@@ -1,0 +1,20 @@
+code: superhero
+title: "Супергерой {name}"
+emoji: "🦸"
+teaser: "В городе пропали все улыбки. {name} получает суперсилу доброты и возвращает их."
+age_range: [3, 9]
+hero_outfit: "bright blue superhero suit with a golden star on the chest, short red cape, red boots"
+version: 1
+scenes:
+  - {n: 1,  beat: "обычное утро",     setting: "city apartment balcony, morning",             action: "hero notices everyone in the street looks grumpy and grey"}
+  - {n: 2,  beat: "дар",              setting: "bedroom, a glowing star floats in",           action: "a glowing star gives hero a superhero suit"}
+  - {n: 3,  beat: "первый полёт",     setting: "city rooftops",                                action: "hero flies for the first time, cape fluttering, laughing"}
+  - {n: 4,  beat: "котёнок",          setting: "tall tree in a park",                         action: "hero rescues a kitten from a tree, an old lady smiles"}
+  - {n: 5,  beat: "первая улыбка",    setting: "park bench",                                  action: "hero shares ice cream with a sad boy, he smiles"}
+  - {n: 6,  beat: "серая туча",       setting: "above the city, a grumpy grey cloud",         action: "hero discovers a grumpy cloud sucking up smiles"}
+  - {n: 7,  beat: "разговор",         setting: "on top of the cloud",                         action: "hero sits with the cloud, who is sad because nobody waves at it"}
+  - {n: 8,  beat: "идея",             setting: "city square",                                 action: "hero gathers kids to draw smiles on balloons"}
+  - {n: 9,  beat: "шары",             setting: "sky full of colorful balloons with smiles",   action: "balloons float up to the cloud"}
+  - {n: 10, beat: "радуга",           setting: "city with rainbow after the cloud turns white", action: "cloud becomes white and fluffy, smiles rain down on the city"}
+  - {n: 11, beat: "парад",            setting: "city street with confetti",                   action: "everyone cheers hero, kitten on hero's shoulder"}
+  - {n: 12, beat: "домой",            setting: "bedroom at night, suit on a chair",           action: "hero sleeps, the star glows on the window"}

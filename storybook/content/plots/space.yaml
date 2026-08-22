@@ -1,0 +1,20 @@
+code: space
+title: "{name} летит в космос"
+emoji: "🚀"
+teaser: "Луна потеряла свой свет. {name} отправляется в космос, чтобы вернуть его."
+age_range: [3, 9]
+hero_outfit: "white and orange spacesuit with a round helmet (visor open), small star badge"
+version: 1
+scenes:
+  - {n: 1,  beat: "ночь без луны",    setting: "backyard at night, telescope",                 action: "hero looks through telescope, the moon is dark and sad"}
+  - {n: 2,  beat: "ракета",           setting: "garage turned into a launch pad",              action: "hero builds a small rocket from boxes that magically becomes real"}
+  - {n: 3,  beat: "старт",            setting: "launch pad at dawn",                           action: "rocket lifts off with sparkles, hero waves from the window"}
+  - {n: 4,  beat: "невесомость",      setting: "inside the rocket cabin",                      action: "hero floats with a floating sandwich and a giggling robot helper"}
+  - {n: 5,  beat: "астероиды",        setting: "asteroid field with colorful rocks",           action: "hero steers the rocket between asteroids, focused and brave"}
+  - {n: 6,  beat: "планета радуг",    setting: "a small planet with rainbow rings",            action: "hero lands and meets fluffy round aliens"}
+  - {n: 7,  beat: "подсказка",        setting: "alien village of glowing mushrooms",           action: "aliens explain the moon's light was taken by a lonely comet"}
+  - {n: 8,  beat: "комета",           setting: "deep space, a comet with a sad face",          action: "hero floats toward the comet holding a glowing lantern"}
+  - {n: 9,  beat: "дружба",           setting: "on the comet's tail",                          action: "hero hugs the comet, who was just lonely and wanted a friend"}
+  - {n: 10, beat: "возвращение света", setting: "near the moon",                               action: "comet gives the light back, the moon smiles and glows bright"}
+  - {n: 11, beat: "домой",            setting: "rocket landing in the backyard, moonlit",      action: "hero lands, family waves from the porch under the bright moon"}
+  - {n: 12, beat: "сон",              setting: "bedroom with a moon-shaped nightlight",        action: "hero sleeps, a tiny comet plush on the pillow"}

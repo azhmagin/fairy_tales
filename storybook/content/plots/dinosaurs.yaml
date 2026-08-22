@@ -1,0 +1,20 @@
+code: dinosaurs
+title: "{name} в стране динозавров"
+emoji: "🦕"
+teaser: "Старая карта ведёт в долину, где до сих пор живут динозавры. Один из них потерял маму."
+age_range: [3, 9]
+hero_outfit: "khaki explorer vest, yellow t-shirt, green shorts, explorer hat, binoculars"
+version: 1
+scenes:
+  - {n: 1,  beat: "карта",            setting: "attic with old chests and dust in sunlight",  action: "hero finds an old map with a dinosaur footprint"}
+  - {n: 2,  beat: "джунгли",          setting: "lush jungle with huge ferns",                 action: "hero walks with binoculars, colorful parrots above"}
+  - {n: 3,  beat: "след",             setting: "muddy riverbank",                             action: "hero finds giant footprints and a tiny one beside them"}
+  - {n: 4,  beat: "малыш",            setting: "under a big fern",                            action: "hero finds a small crying baby triceratops"}
+  - {n: 5,  beat: "дружба",           setting: "jungle clearing",                             action: "hero shares a banana with the baby dinosaur, it smiles"}
+  - {n: 6,  beat: "путь",             setting: "valley with volcano far away",                action: "hero and baby dino walk together following footprints"}
+  - {n: 7,  beat: "река",             setting: "wide river with stepping stones",             action: "hero helps baby dino cross the stones"}
+  - {n: 8,  beat: "гроза",            setting: "rocky shelter, rain outside",                 action: "hero and dino hide under a rock, hero comforts the dino"}
+  - {n: 9,  beat: "птеродактиль",     setting: "cliff top at sunset",                         action: "a friendly pterodactyl offers a ride, hero and dino climb on"}
+  - {n: 10, beat: "мама",             setting: "meadow full of dinosaurs",                    action: "baby dino runs to its mother, hero watches happily"}
+  - {n: 11, beat: "прощание",         setting: "meadow at golden hour",                       action: "mother dino bows to hero, hero hugs the baby goodbye"}
+  - {n: 12, beat: "домой",            setting: "attic, map on the wall, window with stars",   action: "hero sleeps with a dinosaur toy, the map glows softly"}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<style>
+  @page { size: 210mm 210mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #2b2b2b; }
+  .page { width: 210mm; height: 210mm; page-break-after: always; position: relative; overflow: hidden; background: #fffaf3; }
+  .page:last-child { page-break-after: auto; }
+  .cover { background: #1f2a44; color: #fff; }
+  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cover .title {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 14mm 16mm 16mm;
+    background: linear-gradient(transparent, rgba(20,28,50,.92));
+    font-size: 30pt; font-weight: 800; line-height: 1.1; text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+  .cover .subtitle { font-size: 12pt; font-weight: 500; opacity: .9; margin-top: 4mm; }
+  .dedication { display: flex; align-items: center; justify-content: center; text-align: center; padding: 30mm; font-size: 16pt; line-height: 1.5; font-style: italic; color: #4a4a4a; }
+  .spread img { position: absolute; top: 0; left: 0; width: 210mm; height: 150mm; object-fit: cover; }
+  .spread .text {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 60mm; padding: 9mm 16mm 10mm;
+    font-size: 14.5pt; line-height: 1.45; background: #fffaf3;
+  }
+  .spread .text::before {
+    content: ""; position: absolute; left: 0; right: 0; top: -10mm; height: 10mm;
+    background: linear-gradient(transparent, #fffaf3);
+  }
+  .num { position: absolute; right: 8mm; bottom: 5mm; font-size: 9pt; color: #9a9a9a; }
+  .end { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 26mm; }
+  .end h2 { font-size: 22pt; margin: 0 0 8mm; color: #1f2a44; }
+  .end .moral { font-size: 14pt; line-height: 1.5; max-width: 150mm; }
+  .colophon { position: absolute; left: 16mm; right: 16mm; bottom: 12mm; font-size: 8.5pt; color: #8a8a8a; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <img src="{{ cover }}" alt="">
+  <div class="title">{{ title }}<div class="subtitle">Сказка, в которой {{ child_name }} — главный герой</div></div>
+</section>
+
+<section class="page dedication">
+  <div>{{ dedication }}</div>
+</section>
+
+{% for p in pages %}
+<section class="page spread">
+  <img src="{{ p.img }}" alt="">
+  <div class="text">{{ p.text }}</div>
+  <div class="num">{{ p.n }}</div>
+</section>
+{% endfor %}
+
+<section class="page end">
+  <h2>Конец</h2>
+  {% if moral %}<div class="moral">{{ moral }}</div>{% endif %}
+  <div class="colophon">
+    {{ disclosure }}<br>
+    © {{ year }}. Книга создана для {{ child_name }} по заказу родителей. Иллюстрации основаны на фотографиях, предоставленных родителями.
+  </div>
+</section>
+
+</body>
+</html>
