@@ -4,7 +4,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     bot_mode: Literal["polling", "webhook"] = "polling"
     webhook_url: str = ""  # https://example.kz/tg/webhook
     webhook_secret: str = "change-me"
-    admin_ids: list[int] = Field(default_factory=list)  # SB_ADMIN_IDS='[123,456]'
+    admin_ids: list[int] | None = Field(default=None)  # SB_ADMIN_IDS='[123,456]'
     admin_chat_id: int | None = None  # alerts go here
 
     # Storage
@@ -61,9 +61,17 @@ class Settings(BaseSettings):
     human_review: bool = True  # first 100 books go through admin gallery
 
     # Analytics
-    posthog_api_key: str = ""
+    posthog_api_key: str | None = None
     posthog_host: str = "https://eu.i.posthog.com"
 
+
+    @field_validator("admin_chat_id", "admin_ids", "posthog_api_key", mode="before")
+    @classmethod
+    def _empty_to_default(cls, v):
+        """Railway reference variables may resolve to '' when the source is unset."""
+        if isinstance(v, str) and v.strip() == "":
+            return None
+        return v
 
     @property
     def sqlalchemy_url(self) -> str:

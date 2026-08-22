@@ -28,7 +28,7 @@ router = Router()
 
 
 def _is_admin(user_id: int) -> bool:
-    return user_id in get_settings().admin_ids
+    return user_id in (get_settings().admin_ids or [])
 
 
 router.message.filter(lambda m: _is_admin(m.from_user.id))
